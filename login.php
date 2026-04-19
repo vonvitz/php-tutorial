@@ -14,17 +14,23 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password">
         <br>
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" name="login">
     </form>
 </body>
 </html>
 
 <?php
-    if(isset($_POST['username']) && isset($_POST['password']))
+    if(isset($_POST['login']) && isset($_POST['username']) &&  isset($_POST['password']))
     {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
+        if(empty($username) || empty($password))
+        {
+            echo "Please fill in all fields. <br>";
+            exit;
+        }
+        
         if($username === 'admin' && $password === 'password')
         {
             echo "Login successful! Welcome, {$username}. <br>";
